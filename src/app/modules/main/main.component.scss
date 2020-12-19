@@ -1,0 +1,13 @@
+@use '../../colors.scss' as colors;
+
+.content {
+    display: flex;
+    height: 100%;
+    app-issue-info {
+        width: 100%;
+    }
+    app-issues-list {
+        border-right: 2px colors.$borders solid;
+        width: 30rem;
+    }
+}
