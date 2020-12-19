@@ -1,5 +1,18 @@
 @use '../../colors.scss' as colors;
 
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    height: 3rem;
+    app-nav-header {
+        height: 100%;
+    }
+}
+
 .content {
     display: flex;
     height: 100%;
@@ -9,5 +22,11 @@
     app-issues-list {
         border-right: 2px colors.$borders solid;
         width: 30rem;
+    }
+}
+
+@media(max-width: 970px) {
+    .header {
+        height: 5rem;
     }
 }

@@ -1,0 +1,16 @@
+<div class="content">
+    <form [formGroup]="getIssuesForm" class="issues-list-form" (submit)="getIssues()">
+        <div class="user-name">
+            <!-- <label for="user-name-input">User name</label> -->
+            <input formControlName="userNameInput" type="text" name="user-name-input" class="user-name-input input" placeholder="User name">
+        </div>
+        <div class="repo-name">
+            <!-- <label for="repo-name-input">Repo name</label> -->
+            <input formControlName="repoNameInput" type="text" name="repo-name-input" class="repo-name-input input" placeholder="Repo name">
+        </div>
+        <div class="issue-number">
+            <input formControlName="issueNumberInput" type="number" name="issue-number-input" class="issue-number input" placeholder="Issue number">
+        </div>
+        <button type="submit" class="get-issues-btn">Get Issues</button>
+    </form>
+</div>
