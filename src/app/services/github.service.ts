@@ -1,6 +1,7 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IIssue } from '../interfaces/github/issue.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,10 @@ export class GithubService {
 
   constructor(private http: HttpClient) { }
 
-  getIssues(username: string, reponame: string, issueNumber: number | undefined): Observable<any> {
-    let numberUrl = '';
-    if (issueNumber !== null) {
-      numberUrl = '/' + issueNumber;
-    }
-    console.log(numberUrl);
-    return this.http.get(`https://api.github.com/repos/${username}/${reponame}/issues${numberUrl}`);
+  getMultipleIssues(username: string, reponame: string): Observable<IIssue[]> {
+    return this.http.get<IIssue[]>(`https://api.github.com/repos/${username}/${reponame}/issues`);
+  }
+  getSingleIssue(username: string, reponame: string, issueNumber: number): Observable<IIssue> {
+    return this.http.get<IIssue>(`https://api.github.com/repos/${username}/${reponame}/issues/${issueNumber}`);
   }
 }
