@@ -1,13 +1,16 @@
 @use 'src/app/colors' as colors;
 
 .header {
-    height: 3rem;
+    height: 35px;
     border-bottom: 1px colors.$borders solid;
 }
 
 .content {
     width: 100%;
     background-color: colors.$bgiilist;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(100vh - 70px);
     .list {
         margin-left: 5%;
         margin-right: 5%;

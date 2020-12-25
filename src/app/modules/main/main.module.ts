@@ -8,6 +8,7 @@ import { NavHeaderModule } from 'src/app/shared/modules/nav-header/nav-header.mo
 import { IssueComponent } from './issues-list/issue/issue.component';
 import { IssueListHeaderComponent } from './issues-list/issue-list-header/issue-list-header.component';
 import { IssueLabelComponent } from './issues-list/issue/issue-label/issue-label.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [MainComponent, IssuesListComponent, IssueInfoComponent, IssueComponent, IssueListHeaderComponent, IssueLabelComponent],
@@ -15,6 +16,8 @@ import { IssueLabelComponent } from './issues-list/issue/issue-label/issue-label
     CommonModule,
     MainRoutingModule,
     NavHeaderModule,
+    MatCheckboxModule
   ]
 })
+
 export class MainModule { }

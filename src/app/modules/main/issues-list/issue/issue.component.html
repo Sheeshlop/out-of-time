@@ -11,17 +11,15 @@
                 <img src="../../../../../assets/ireopen.svg" alt="issue opened icon">
             </div> -->
         </div>
-        <div class="checkbox">
-            <img src="../../../../../assets/check-off.svg" alt="issue opened icon">
-        </div>
+        <mat-checkbox></mat-checkbox>
     </div>
-    <div class="title">
-        <span>FEATURE REQUEST: So basicaly i want a great feature!</span>
-    </div>
-    <div class="label-time-wrap">
-        <div class="labels">
-            <app-issue-label *ngFor="let label of [1, 2, 3, 4, 5]"></app-issue-label>
+    <div class="title-label">
+        <div class="title">FEATURE REQUEST: So basicaly i want a great feature!</div>
+        <div class="label-time-wrap">
+            <div class="labels">
+                <app-issue-label *ngFor="let label of [1, 2, 3]"></app-issue-label>
+            </div>
+            <div class="time">4 h 30 m</div>
         </div>
-        <div class="time">4 h 30 m</div>
     </div>
 </div>

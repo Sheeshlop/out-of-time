@@ -1,8 +1,51 @@
-@use '/src/app/colors.scss' as colors;
+@use '/src/app/colors.scss'as colors;
 
 .issue-item {
     background: colors.$bgicard;
     height: 72px;
     margin-top: 1.5rem;
+    display: flex;
+    border-radius: 7px;
+    border: 1px solid #e0e0e0;
+
+    .icons,
+    .title-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5px;
+    }
+
+
+    .title-label {
+        width: 100%;
+
+        .title {
+        }
+
+        .label-time-wrap {
+
+            display: flex;
+            justify-content: space-between;
+
+            .labels {
+                display: flex;
+                overflow: hidden;
+                margin-left: 3px;
+                app-issue-label {
+                    margin-right: 3px;
+                }
+            }
+
+            .time {
+                font-size: 0.7rem;
+                white-space: nowrap;
+            }
+        }
+
+    }
 }
 
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: #8A8A8A;
+}
