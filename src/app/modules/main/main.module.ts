@@ -5,16 +5,16 @@ import { IssuesListComponent } from './issues-list/issues-list.component';
 import { IssueInfoComponent } from './issue-info/issue-info.component';
 import { MainRoutingModule } from './main-routing.module';
 import { NavHeaderModule } from 'src/app/shared/modules/nav-header/nav-header.module';
-import { StoreModule } from '@ngrx/store';
-import * as issuesListFeature from 'src/app/modules/main/issues-list/service/issues-list.reducer';
+import { IssueComponent } from './issues-list/issue/issue.component';
+import { IssueListHeaderComponent } from './issues-list/issue-list-header/issue-list-header.component';
+import { IssueLabelComponent } from './issues-list/issue/issue-label/issue-label.component';
 
 @NgModule({
-  declarations: [MainComponent, IssuesListComponent, IssueInfoComponent],
+  declarations: [MainComponent, IssuesListComponent, IssueInfoComponent, IssueComponent, IssueListHeaderComponent, IssueLabelComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
     NavHeaderModule,
-    StoreModule.forFeature(issuesListFeature.issuesListFeatureKey, issuesListFeature.getIssuesListReducer)
   ]
 })
 export class MainModule { }

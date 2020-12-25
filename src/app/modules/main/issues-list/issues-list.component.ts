@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
-import { removeIssue, reset } from './service/issues-list.actions';
+import { IssuesListService } from './issues-list.service';
 
 @Component({
   selector: 'app-issues-list',
@@ -10,16 +9,20 @@ import { removeIssue, reset } from './service/issues-list.actions';
   styleUrls: ['./issues-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IssuesListComponent implements OnInit {
+export class IssuesListComponent implements OnInit, OnDestroy {
 
-  public issues$: Observable<IIssue[]>;
+  public issues: IIssue[];
+  private issueStream!: Subscription;
 
-  constructor(private store: Store<{ issuesList: IIssue[] }>) {
-    this.issues$ = store.select('issuesList');
+  constructor(private issuesListService: IssuesListService) {
+    this.issues = [];
   }
 
   ngOnInit(): void {
-
+    this.issueStream = this.issuesListService.issues$.subscribe((issues: IIssue[]) => {
+      console.log('upcoming issues!', issues);
+      this.issues = issues;
+    });
   }
 
   addIssue(): void {
@@ -27,11 +30,12 @@ export class IssuesListComponent implements OnInit {
   }
 
   removeIssue(issue: IIssue): void {
-    this.store.dispatch(removeIssue());
   }
 
   reset(): void {
-    this.store.dispatch(reset());
   }
 
+  ngOnDestroy(): void {
+    this.issueStream.unsubscribe();
+  }
 }

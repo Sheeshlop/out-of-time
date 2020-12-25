@@ -1,0 +1,8 @@
+@use '/src/app/colors.scss' as colors;
+
+.issue-item {
+    background: colors.$bgicard;
+    height: 72px;
+    margin-top: 1.5rem;
+}
+

@@ -1,3 +1,8 @@
+<div class="header">
+    <app-issue-list-header></app-issue-list-header>
+</div>
 <div class="content">
-    <div></div>
+    <div class="list">
+        <app-issue *ngFor="let issue of [1, 2, 3, 4, 5]"></app-issue>
+    </div>
 </div>

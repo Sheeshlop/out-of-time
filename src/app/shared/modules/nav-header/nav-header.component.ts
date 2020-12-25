@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
-import { fetchMultipleIssues, fetchSingleIssue } from 'src/app/modules/main/issues-list/service/issues-list.actions';
+import { IssuesListService } from 'src/app/modules/main/issues-list/issues-list.service';
 import { GithubService } from 'src/app/services/github.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class NavHeaderComponent implements OnInit {
 
   getIssuesForm!: FormGroup;
 
-  constructor(private github: GithubService, private store: Store<{issuesList: IIssue[]}>) {
+  constructor(private github: GithubService, private issuesListService: IssuesListService) {
 
   }
 
@@ -37,17 +36,18 @@ export class NavHeaderComponent implements OnInit {
   }
 
   getSingleIssue(): void {
-    this.github.getSingleIssue(this.getIssuesForm.value.username, this.getIssuesForm.value.reponame, this.getIssuesForm.value.issueNumber).subscribe(
-      res => {
-        this.store.dispatch(fetchSingleIssue(res));
-      }
+    this.github.getSingleIssue(this.getIssuesForm.value.username, this.getIssuesForm.value.reponame,
+      this.getIssuesForm.value.issueNumber).subscribe(
+        res => {
+          this.issuesListService.addSingleIssue(res);
+        }
     );
   }
 
   getMultipleIssues(): void {
     this.github.getMultipleIssues(this.getIssuesForm.value.username, this.getIssuesForm.value.reponame).subscribe(
         res => {
-          this.store.dispatch(fetchMultipleIssues(res));
+          this.issuesListService.addMultipleIssues(res);
         }
     );
   }
