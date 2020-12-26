@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { IIssue } from 'src/app/interfaces/github/issue.interface';
+import { IssueInfoService } from './issue-info.service';
 
 @Component({
   selector: 'app-issue-info',
@@ -6,11 +9,24 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./issue-info.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IssueInfoComponent implements OnInit {
+export class IssueInfoComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  public selectedIssue!: IIssue;
+  private selectedIssue$!: Subscription;
+
+  constructor(private issueInfoService: IssueInfoService, private changeDetection: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.selectedIssue$ = this.issueInfoService.selectedIssue.subscribe((next: IIssue | undefined) => {
+      if (next) {
+        this.selectedIssue = next;
+        this.changeDetection.markForCheck();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.selectedIssue$.unsubscribe();
   }
 
 }

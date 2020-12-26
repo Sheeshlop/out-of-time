@@ -3,6 +3,6 @@
 </div>
 <div class="content">
     <div class="list">
-        <app-issue #issueList *ngFor="let issue of issues" [issue]="issue" [selected]="allSelected"></app-issue>
+        <app-issue #issueList *ngFor="let issue of issues" [issue]="issue" [selected]="allSelected" (click)="clickItem(issue)"></app-issue>
     </div>
 </div>

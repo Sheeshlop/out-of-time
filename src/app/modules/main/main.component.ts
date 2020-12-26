@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
+import { IssueInfoService } from './issue-info/issue-info.service';
 import { IssuesListService } from './issues-list/issues-list.service';
 
 @Component({
@@ -11,20 +11,13 @@ import { IssuesListService } from './issues-list/issues-list.service';
 })
 export class MainComponent implements OnInit {
 
-  issues: IIssue[] = [];
-  issues$!: Subscription;
-
-  constructor(private issuesListService: IssuesListService) { }
+  constructor(private issuesListService: IssuesListService, private issueInfoService: IssueInfoService) { }
 
   ngOnInit(): void {
-    this.issues$ = this.issuesListService.issues$.subscribe((issues: IIssue[]) => {
-      if (issues.length) {
-        this.appendIssues(issues);
-      }
-    });
   }
 
-  appendIssues(issues: IIssue[]): void {
+  selectIssue(issue: IIssue): void {
+    this.issueInfoService.selectIssue(issue);
   }
 
 }

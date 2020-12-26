@@ -3,7 +3,7 @@
         <app-nav-header></app-nav-header>
     </div>
     <div class="content">
-        <app-issues-list [issues]="issues"></app-issues-list>
+        <app-issues-list (selectIssueItem)="selectIssue($event)"></app-issues-list>
         <app-issue-info></app-issue-info>
     </div>
 </div>
