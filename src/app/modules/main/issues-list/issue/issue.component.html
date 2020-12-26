@@ -11,10 +11,10 @@
                 <img src="../../../../../assets/ireopen.svg" alt="issue opened icon">
             </div> -->
         </div>
-        <mat-checkbox></mat-checkbox>
+        <mat-checkbox [checked]="selected"></mat-checkbox>
     </div>
     <div class="title-label">
-        <div class="title">FEATURE REQUEST: So basicaly i want a great feature!</div>
+        <div class="title">{{issue.title}}</div>
         <div class="label-time-wrap">
             <div class="labels">
                 <app-issue-label *ngFor="let label of [1, 2, 3]"></app-issue-label>

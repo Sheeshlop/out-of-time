@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 import { IssuesListService } from './issues-list.service';
@@ -11,22 +11,27 @@ import { IssuesListService } from './issues-list.service';
 })
 export class IssuesListComponent implements OnInit, OnDestroy {
 
-  public issues: IIssue[];
-  private issueStream!: Subscription;
+  @Input() issues: IIssue[] = [];
+  issues$!: Subscription;
 
-  constructor(private issuesListService: IssuesListService) {
-    this.issues = [];
+  constructor(private issuesListService: IssuesListService, private changeDetection: ChangeDetectorRef) {
+    // this.issues = [];
   }
 
   ngOnInit(): void {
-    this.issueStream = this.issuesListService.issues$.subscribe((issues: IIssue[]) => {
-      console.log('upcoming issues!', issues);
-      this.issues = issues;
+    this.issues$ = this.issuesListService.issues$.subscribe((issues: IIssue[]) => {
+      issues.forEach(issue => {
+        this.addIssue(issue);
+      });
+      this.changeDetection.markForCheck();
     });
   }
 
-  addIssue(): void {
+  onSelectAll(state: boolean): void {
+  }
 
+  addIssue(issue: IIssue): void {
+    this.issues.push(issue);
   }
 
   removeIssue(issue: IIssue): void {
@@ -36,6 +41,5 @@ export class IssuesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.issueStream.unsubscribe();
   }
 }

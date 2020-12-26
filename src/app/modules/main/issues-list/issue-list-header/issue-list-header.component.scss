@@ -2,4 +2,12 @@
 
 .header {
     height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+    button {
+        margin-left: 10px;
+        height: 2rem;
+        font-size: 0.9rem;
+    }
 }

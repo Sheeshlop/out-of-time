@@ -9,6 +9,7 @@ import { IssueComponent } from './issues-list/issue/issue.component';
 import { IssueListHeaderComponent } from './issues-list/issue-list-header/issue-list-header.component';
 import { IssueLabelComponent } from './issues-list/issue/issue-label/issue-label.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [MainComponent, IssuesListComponent, IssueInfoComponent, IssueComponent, IssueListHeaderComponent, IssueLabelComponent],
@@ -16,7 +17,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CommonModule,
     MainRoutingModule,
     NavHeaderModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule
   ]
 })
 
