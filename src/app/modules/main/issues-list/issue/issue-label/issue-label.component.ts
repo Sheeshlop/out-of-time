@@ -15,7 +15,6 @@ export class IssueLabelComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.label);
     this.labelcolor = {
         color: `#${this.label.color}`,
         border: `1px #${this.label.color} solid`

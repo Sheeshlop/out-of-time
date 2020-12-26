@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output } from '@angular/core';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 
 @Component({
@@ -17,4 +17,7 @@ export class IssueComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  select(value: boolean): void {
+    this.selected = value;
+  }
 }

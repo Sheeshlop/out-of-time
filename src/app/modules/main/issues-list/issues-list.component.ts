@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 import { IssuesListService } from './issues-list.service';
@@ -13,9 +13,11 @@ export class IssuesListComponent implements OnInit, OnDestroy {
 
   @Input() issues: IIssue[] = [];
   issues$!: Subscription;
+  allSelected!: boolean;
+
+  @ViewChildren('issueList') private issueList!: QueryList<any>;
 
   constructor(private issuesListService: IssuesListService, private changeDetection: ChangeDetectorRef) {
-    // this.issues = [];
   }
 
   ngOnInit(): void {
@@ -28,6 +30,15 @@ export class IssuesListComponent implements OnInit, OnDestroy {
   }
 
   onSelectAll(state: boolean): void {
+    this.allSelected = state;
+  }
+
+  deleteSelected(): void {
+    this.issueList.forEach(item => {
+      if (item.selected) {
+        this.removeIssue(item.issue);
+      }
+    });
   }
 
   addIssue(issue: IIssue): void {
@@ -35,6 +46,7 @@ export class IssuesListComponent implements OnInit, OnDestroy {
   }
 
   removeIssue(issue: IIssue): void {
+    this.issues = this.issues.filter(item => item !== issue);
   }
 
   reset(): void {

@@ -11,11 +11,16 @@ export class IssueListHeaderComponent implements OnInit {
   constructor() { }
 
   @Output() selectAll: EventEmitter<boolean> = new EventEmitter();
+  @Output() deleteSelected: EventEmitter<any> = new EventEmitter();
 
   ngOnInit(): void {
   }
 
   check(state: boolean): void {
     this.selectAll.emit(state);
+  }
+
+  deleteIssues(): void {
+    this.deleteSelected.emit(true);
   }
 }
