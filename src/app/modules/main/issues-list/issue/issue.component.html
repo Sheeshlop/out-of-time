@@ -17,7 +17,7 @@
         <div class="title">{{issue.title}}</div>
         <div class="label-time-wrap">
             <div class="labels">
-                <app-issue-label *ngFor="let label of [1, 2, 3]"></app-issue-label>
+                <app-issue-label *ngFor="let label of issue.labels" [label]="label"></app-issue-label>
             </div>
             <div class="time">4 h 30 m</div>
         </div>

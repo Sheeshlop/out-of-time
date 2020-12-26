@@ -21,8 +21,8 @@ export class NavHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIssuesForm = new FormGroup({
-      username: new FormControl('sheeshlop'),
-      reponame: new FormControl('out-of-time'),
+      username: new FormControl('angular'),
+      reponame: new FormControl('angular'),
       issueNumber: new FormControl()
     });
   }

@@ -20,9 +20,6 @@
     .title-label {
         width: 100%;
 
-        .title {
-        }
-
         .label-time-wrap {
 
             display: flex;
@@ -32,8 +29,16 @@
                 display: flex;
                 overflow: hidden;
                 margin-left: 3px;
+                max-width: 27rem;
+                overflow-x: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
                 app-issue-label {
                     margin-right: 3px;
+
                 }
             }
 

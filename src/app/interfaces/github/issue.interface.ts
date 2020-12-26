@@ -28,7 +28,7 @@ export interface IIssue {
     user: IGithubUser;
 }
 
-interface ILabel {
+export interface ILabel {
     color: string;
     default: boolean;
     description: string;
