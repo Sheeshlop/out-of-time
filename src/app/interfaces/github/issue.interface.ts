@@ -1,6 +1,15 @@
 import { IGithubUser } from './user.interface';
 
 export interface IIssue {
+    username: string;
+    reponame: string;
+    checked: boolean;
+    estimatedTime: string;
+    trackedTime: string;
+    info: IGithubIssue;
+}
+
+export interface IGithubIssue {
     active_lock_reason: string | null;
     assignee: IGithubUser[];
     author_association: string;

@@ -39,7 +39,7 @@ export class NavHeaderComponent implements OnInit {
     this.github.getSingleIssue(this.getIssuesForm.value.username, this.getIssuesForm.value.reponame,
       this.getIssuesForm.value.issueNumber).subscribe(
         res => {
-          this.issuesListService.addSingleIssue(res);
+          this.issuesListService.addSingleIssue(this.getIssuesForm.value.username, this.getIssuesForm.value.reponame, res);
         }
     );
   }
@@ -47,7 +47,7 @@ export class NavHeaderComponent implements OnInit {
   getMultipleIssues(): void {
     this.github.getMultipleIssues(this.getIssuesForm.value.username, this.getIssuesForm.value.reponame).subscribe(
         res => {
-          this.issuesListService.addMultipleIssues(res);
+          this.issuesListService.addMultipleIssues(this.getIssuesForm.value.username, this.getIssuesForm.value.reponame, res);
         }
     );
   }

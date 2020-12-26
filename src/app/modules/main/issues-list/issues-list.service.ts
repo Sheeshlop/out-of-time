@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IIssue } from 'src/app/interfaces/github/issue.interface';
+import { IGithubIssue, IIssue } from 'src/app/interfaces/github/issue.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,20 @@ export class IssuesListService {
 
   constructor() { }
 
-  addSingleIssue(issue: IIssue): void {
-    this.issues$.next([issue]);
-  }
-  addMultipleIssues(issues: IIssue[]): void {
-    this.issues$.next(issues);
+  addSingleIssue(username: string, reponame: string, issue: IGithubIssue): void {
+    this.issues$.next([{
+      username,
+      reponame,
+      checked: false,
+      estimatedTime: '',
+      trackedTime: '',
+      info: issue
+    }]);
   }
 
+  addMultipleIssues(username: string, reponame: string, issues: IGithubIssue[]): void {
+    issues.forEach(issue => {
+      this.addSingleIssue(username, reponame, issue);
+    });
+  }
 }

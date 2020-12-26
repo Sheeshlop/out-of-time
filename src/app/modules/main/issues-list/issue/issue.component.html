@@ -14,10 +14,10 @@
         <mat-checkbox [checked]="selected" (change)="select($event.checked)"></mat-checkbox>
     </div>
     <div class="title-label">
-        <div class="title">{{issue.title}}</div>
+        <div class="title">{{issue.info.title}}</div>
         <div class="label-time-wrap">
             <div class="labels">
-                <app-issue-label *ngFor="let label of issue.labels" [label]="label"></app-issue-label>
+                <app-issue-label *ngFor="let label of issue.info.labels" [label]="label"></app-issue-label>
             </div>
             <div class="time">4 h 30 m</div>
         </div>
