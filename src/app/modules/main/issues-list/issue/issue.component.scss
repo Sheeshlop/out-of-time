@@ -1,6 +1,14 @@
 @use '/src/app/colors.scss'as colors;
 
+.issue-item:hover {
+    background: #cccccc;
+}
+.issue-item:active {
+    background: #DFDFDF;
+}
 .issue-item {
+    pointer-events: painted;
+    cursor: pointer;
     background: colors.$bgicard;
     height: 72px;
     margin-top: 1.5rem;
@@ -31,7 +39,6 @@
                 margin-left: 3px;
                 max-width: 27rem;
                 overflow-x: scroll;
-
                 &::-webkit-scrollbar {
                     display: none;
                 }
