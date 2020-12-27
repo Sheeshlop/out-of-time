@@ -11,15 +11,16 @@ export class IssuesListService {
 
   constructor() { }
 
-  addSingleIssue(username: string, reponame: string, issue: IGithubIssue): void {
-    this.issues$.next([{
+  addSingleIssue(username: string, reponame: string, rawIssue: IGithubIssue): void {
+    const issue: IIssue = {
       username,
       reponame,
       checked: false,
       estimatedTime: '',
       trackedTime: '',
-      info: issue
-    }]);
+      info: rawIssue
+    };
+    this.issues$.next([issue]);
   }
 
   addMultipleIssues(username: string, reponame: string, issues: IGithubIssue[]): void {
@@ -27,4 +28,17 @@ export class IssuesListService {
       this.addSingleIssue(username, reponame, issue);
     });
   }
+
+  saveIssuesToStorage(issues: IIssue[]): void {
+    localStorage.setItem('issues', JSON.stringify(issues));
+  }
+
+  loadIssueseFromStorage(): IIssue[] | 'no issues in storage' {
+    const issues = localStorage.getItem('issues');
+    if (issues) {
+      return JSON.parse(issues);
+    }
+    return 'no issues in storage';
+  }
+
 }

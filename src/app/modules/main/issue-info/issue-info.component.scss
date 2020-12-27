@@ -1,7 +1,53 @@
-@use 'src/app/colors' as colors;
+@use 'src/app/colors'as colors;
 
 .content {
     width: 100%;
     height: 100%;
     background-color: colors.$bgiinfo;
+}
+
+.header-message {
+    display: flex;
+    flex-direction: column;
+
+    .title-wrap {
+        font-size: 1.7rem;
+        line-height: 1.7rem;
+        margin: 20px;
+
+        .title, .number {
+            display: inline;
+        }
+        .number {
+            margin-left: 10px;
+            color: #969696; 
+        }
+    }
+
+    .opened-by-wrap {
+        display: flex;
+        font-size: 0.9rem;
+        align-items: center;
+        .state-icon {
+            display: flex;
+            padding: 3px;
+            border-radius: 20px;
+            img {
+                margin-left: 5px;
+                margin-right: 3px;
+                width: 16px;
+                height: 16px;
+            }
+            .state {
+                margin-right: 5px;
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+        }
+        .open {
+            border: 1px solid green;
+            color: green;
+        }
+    }
 }

@@ -1,8 +1,16 @@
-<div class="content">
-    <div class="state"></div>
-    <div class="title">
-        {{selectedIssue}}
+<div class="content" *ngIf="selectedIssue">
+    <div class="header-message">
+        <div class="title-wrap">
+            <div class="title">{{selectedIssue?.info?.title}}</div>
+            <div class="number">#{{selectedIssue?.info?.number}}</div>
+        </div>
+        <div class="opened-by-wrap">
+            <div class="state-icon open">
+                <img src="../../../../assets/opened16px.svg">
+                <div class="state">{{selectedIssue?.info?.state}}</div>
+            </div>
+            <div class="note">User opened this issue "days" ago</div>
+        </div>
     </div>
-    <div class="number"></div>
-    <div class="body"></div>
+    <div class="body">{{selectedIssue?.info?.body}}</div>
 </div>

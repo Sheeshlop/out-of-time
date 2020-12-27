@@ -28,7 +28,6 @@ export class IssuesListComponent implements OnInit, OnDestroy {
       issues.forEach(issue => {
         this.addIssue(issue);
       });
-      console.log(this.issues);
       this.changeDetection.markForCheck();
     });
   }
