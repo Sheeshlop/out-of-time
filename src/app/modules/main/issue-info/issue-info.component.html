@@ -6,11 +6,12 @@
         </div>
         <div class="opened-by-wrap">
             <div class="state-icon open">
-                <img src="../../../../assets/opened16px.svg">
+                <img src="../../../../assets/iopen.svg">
                 <div class="state">{{selectedIssue?.info?.state}}</div>
             </div>
-            <div class="note">User opened this issue "days" ago</div>
+            <div class="note"><a [href]="selectedIssue.info.user.html_url">{{selectedIssue?.info?.user?.login}}</a> opened this issue {{ createDateFromNow }}</div>
         </div>
     </div>
     <div class="body">{{selectedIssue?.info?.body}}</div>
+    <hr>
 </div>

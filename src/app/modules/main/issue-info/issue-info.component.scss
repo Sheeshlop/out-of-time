@@ -30,8 +30,11 @@
         align-items: center;
         .state-icon {
             display: flex;
+            align-items: center;
             padding: 3px;
             border-radius: 20px;
+            margin-left: 20px;
+            margin-right: 10px;
             img {
                 margin-left: 5px;
                 margin-right: 3px;
@@ -40,6 +43,7 @@
             }
             .state {
                 margin-right: 5px;
+                line-height: 15px;
                 &::first-letter {
                     text-transform: uppercase;
                 }
@@ -50,4 +54,10 @@
             color: green;
         }
     }
+
+    
+}
+
+.body {
+    margin: 20px;
 }

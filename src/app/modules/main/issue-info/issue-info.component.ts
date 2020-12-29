@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy
 import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 import { IssueInfoService } from './issue-info.service';
+import { Moment } from 'moment';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-issue-info',
@@ -14,12 +16,15 @@ export class IssueInfoComponent implements OnInit, OnDestroy {
   public selectedIssue!: IIssue;
   private selectedIssue$!: Subscription;
 
+  public createDateFromNow!: string;
+
   constructor(private issueInfoService: IssueInfoService, private changeDetection: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.selectedIssue$ = this.issueInfoService.selectedIssue.subscribe((next: IIssue | undefined) => {
       if (next) {
         this.selectedIssue = next;
+        this.createDateFromNow = moment(new Date(next.info.created_at)).fromNow();
         this.changeDetection.markForCheck();
       }
     });
