@@ -10,15 +10,24 @@ import { IssueListHeaderComponent } from './issues-list/issue-list-header/issue-
 import { IssueLabelComponent } from './issues-list/issue/issue-label/issue-label.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { TimeTrackerModule } from './time-tracker/time-tracker.module';
 
 @NgModule({
-  declarations: [MainComponent, IssuesListComponent, IssueInfoComponent, IssueComponent, IssueListHeaderComponent, IssueLabelComponent],
+  declarations: [
+    MainComponent,
+    IssuesListComponent,
+    IssueInfoComponent,
+    IssueComponent,
+    IssueListHeaderComponent,
+    IssueLabelComponent,
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,
     NavHeaderModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    TimeTrackerModule
   ]
 })
 

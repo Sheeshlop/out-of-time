@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlsComponent implements OnInit {
 
+  active = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  track(): void {
+    this.active = !this.active;
   }
 
 }

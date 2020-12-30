@@ -1,0 +1,22 @@
+.controls {
+  .play-icon {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    bottom: 12px;
+    left: 1px;
+    background-image: url('../../../../../assets/play_arrow-white-48dp.svg');
+    background-repeat: no-repeat;
+  }
+
+  .pause-icon {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    bottom: 12px;
+    left: 1px;
+    background-image: url('../../../../../assets/pause-white-48dp.svg');
+    background-repeat: no-repeat;
+
+  }
+}

@@ -11,6 +11,8 @@ import { IssuesListService } from './issues-list/issues-list.service';
 })
 export class MainComponent implements OnInit {
 
+  public issueSelected = false;
+
   constructor(private issuesListService: IssuesListService, private issueInfoService: IssueInfoService) { }
 
   ngOnInit(): void {
@@ -18,6 +20,7 @@ export class MainComponent implements OnInit {
 
   selectIssue(issue: IIssue): void {
     this.issueInfoService.selectIssue(issue);
+    this.issueSelected = true;
   }
 
 }

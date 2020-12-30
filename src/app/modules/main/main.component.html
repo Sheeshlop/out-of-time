@@ -4,6 +4,9 @@
     </div>
     <div class="content">
         <app-issues-list (selectIssueItem)="selectIssue($event)"></app-issues-list>
-        <app-issue-info></app-issue-info>
+        <div class="info-tracker" *ngIf="true">
+            <app-issue-info></app-issue-info>
+            <app-time-tracker></app-time-tracker>
+        </div>
     </div>
 </div>
