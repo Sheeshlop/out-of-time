@@ -9,24 +9,25 @@
   .time-track-info {
     font-size: 1.5rem;
   }
-  .play-icon {
+  .icon-round {
     height: 50px;
     width: 50px;
     position: relative;
     bottom: 12px;
     left: 1px;
-    background-image: url('../../../../../assets/play_arrow-white-48dp.svg');
     background-repeat: no-repeat;
   }
-
+  .play-icon {
+    background-image: url('../../../../../assets/play_arrow-white-48dp.svg');
+  }
   .pause-icon {
-    height: 50px;
-    width: 50px;
-    position: relative;
-    bottom: 12px;
-    left: 1px;
     background-image: url('../../../../../assets/pause-white-48dp.svg');
-    background-repeat: no-repeat;
-
+  }
+  .done-icon {
+    background-image: url('../../../../../assets/done-white-24dp.svg');
+    height: 25px;
+    width: 25px;
+    bottom: 0px;
+    left: 0px;
   }
 }

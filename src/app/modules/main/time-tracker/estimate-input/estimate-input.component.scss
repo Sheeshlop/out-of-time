@@ -1,16 +1,18 @@
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%; 
-    background-color: black;
-    color: pink;
-    padding: 15px;
-    .hours-input, .minutes-input {
-        width: 30px;
-        text-align: center;
-        margin-right: 10px;
-        input::-webkit-inner-spin-button, input::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-        }
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  padding: 15px;
+
+  .hours-input,
+  .minutes-input {
+    width: 30px;
+    text-align: center;
+    margin-right: 10px;
+
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
     }
   }
+}

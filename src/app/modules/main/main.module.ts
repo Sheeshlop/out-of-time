@@ -19,7 +19,7 @@ import { TimeTrackerModule } from './time-tracker/time-tracker.module';
     IssueInfoComponent,
     IssueComponent,
     IssueListHeaderComponent,
-    IssueLabelComponent,
+    IssueLabelComponent
   ],
   imports: [
     CommonModule,
@@ -27,8 +27,8 @@ import { TimeTrackerModule } from './time-tracker/time-tracker.module';
     NavHeaderModule,
     MatCheckboxModule,
     MatButtonModule,
-    TimeTrackerModule
-  ]
+    TimeTrackerModule,
+  ],
 })
 
 export class MainModule { }
