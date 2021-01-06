@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { issuesReducer } from './redux/issues/issues.reducer';
+import { selectedIssueReducer } from './redux/selected-issue/selected-issue.reducer';
 
 @NgModule({
   declarations: [
@@ -15,8 +17,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({
-    }, {}),
+    StoreModule.forRoot({ 
+      issues: issuesReducer,
+      selectedIssue: selectedIssueReducer
+    }),
     BrowserAnimationsModule,
   ],
   providers: [],
