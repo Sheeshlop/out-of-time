@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IIssue } from 'src/app/interfaces/github/issue.interface';
 
 @Component({
 	selector: 'app-estimate-input',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstimateInputComponent implements OnInit {
 
-	hours = 0;
-	minutes!: number;
+	@Input() activeIssue!: IIssue;
+
+	public hours = 0;
+	public minutes = 0;
 
 	constructor() { }
 
@@ -16,13 +19,13 @@ export class EstimateInputComponent implements OnInit {
 	}
 
 	estimate(type: 'hours' | 'minutes', value: number): void {
+		console.log(type, value);
 		if (type === 'minutes' && value >= 30) {
 			for (; this.minutes >= 30;) {
 				this.minutes -= 30;
 				this.hours += 1;
 			}
 		}
-		console.log(type, value);
 	}
 
 }

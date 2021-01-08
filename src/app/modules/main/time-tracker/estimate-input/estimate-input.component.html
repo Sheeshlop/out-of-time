@@ -1,10 +1,10 @@
 <form class="example-form">
 	<mat-form-field class="hours-input">
 		<mat-label>HH</mat-label>
-		<input matInput type="number" name="hours" [ngModel]="hours | time" (change)="estimate('hours', hours)">
+		<input #hoursInput matInput type="number" name="hours" [ngModel]="hours | time" (click)="hoursInput.select()" (change)="estimate('hours', hoursInput.value)">
 	</mat-form-field>
 	<mat-form-field class="minutes-input">
 		<mat-label>MM</mat-label>
-		<input matInput type="number" name="minutes" [ngModel]="minutes | time" (change)="estimate('minutes', minutes)">
+		<input #minutesInput matInput type="number" name="minutes" [ngModel]="minutes | time" (click)="minutesInput.select()" (change)="estimate('minutes', minutesInput.value)">
 	</mat-form-field>
 </form>

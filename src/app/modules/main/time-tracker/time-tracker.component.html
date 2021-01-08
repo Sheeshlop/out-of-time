@@ -1,4 +1,4 @@
 <div class="time-tracker-panel">
-    <app-estimate-input></app-estimate-input>
-    <app-controls></app-controls>
+    <app-estimate-input [activeIssue]="activeIssue" *ngIf="activeIssue"></app-estimate-input>
+    <app-controls [activeIssue]="activeIssue" *ngIf="activeIssue"></app-controls>
 </div>

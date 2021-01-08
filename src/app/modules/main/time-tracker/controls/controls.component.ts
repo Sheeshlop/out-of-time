@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 import { TimerService } from 'src/app/services/timer.service';
-import { IssueInfoService } from '../../issue-info/issue-info.service';
 
 @Component({
 	selector: 'app-controls',
@@ -13,19 +12,12 @@ import { IssueInfoService } from '../../issue-info/issue-info.service';
 export class ControlsComponent implements OnInit {
 
 	trackingTime = false;
-	activeIssue!: IIssue;
-	activeIssue$!: Subscription;
+	@Input() activeIssue!: IIssue;
 	track$!: Subscription;
 
-	constructor(private changeDetector: ChangeDetectorRef, private timerService: TimerService, private issueInfoService: IssueInfoService) { }
+	constructor(private changeDetector: ChangeDetectorRef, private timerService: TimerService) { }
 
 	ngOnInit(): void {
-		this.activeIssue$ = this.issueInfoService.activeIssue.subscribe((activeIssue: IIssue | undefined) => {
-			if (activeIssue) {
-				this.activeIssue = activeIssue;
-				this.changeDetector.detectChanges();
-			}
-		});
 	}
 
 	track(): void {
