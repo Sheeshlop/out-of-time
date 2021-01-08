@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscribable, Subscriber, Subscription, timer } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 import { IIssue } from '../interfaces/github/issue.interface';
 import { ITrackerTime } from '../interfaces/time-tracker/time-tracker.interface';
 
@@ -8,13 +8,10 @@ import { ITrackerTime } from '../interfaces/time-tracker/time-tracker.interface'
 })
 export class TimerService {
 
-	constructor() { }
-
 	timer = timer(1000, 1000);
 	track!: Subscription;
 
 	startTracking(activeIssue: IIssue): Observable<ITrackerTime> {
-		console.log('starting tracking time for', activeIssue);
 		return new Observable((subscriber) => {
 			this.track = this.timer.subscribe(() => {
 				activeIssue.trackedTime.seconds++;
@@ -32,7 +29,6 @@ export class TimerService {
 	}
 
 	pauseTracking(activeIssue: IIssue): void {
-		console.log('paused timer, value: ', activeIssue.trackedTime);
 		this.track.unsubscribe();
 	}
 }

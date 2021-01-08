@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
-import { ITrackerTime } from 'src/app/interfaces/time-tracker/time-tracker.interface';
 import { TimerService } from 'src/app/services/timer.service';
 import { IssueInfoService } from '../../issue-info/issue-info.service';
 
