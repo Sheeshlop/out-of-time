@@ -16,8 +16,16 @@ export class IssuesListService {
 			username,
 			reponame,
 			checked: false,
-			estimatedTime: '',
-			trackedTime: '',
+			estimatedTime: {
+				seconds: 0,
+				minutes: 0,
+				hours: 0
+			},
+			trackedTime: {
+				seconds: 0,
+				minutes: 0,
+				hours: 0
+			},
 			info: rawIssue
 		};
 		this.issues$.next([issue]);

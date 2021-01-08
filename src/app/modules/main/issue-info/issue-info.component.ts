@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 import { IssueInfoService } from './issue-info.service';
@@ -20,7 +20,7 @@ export class IssueInfoComponent implements OnInit, OnDestroy {
 	constructor(private issueInfoService: IssueInfoService, private changeDetection: ChangeDetectorRef) { }
 
 	ngOnInit(): void {
-		this.selectedIssue$ = this.issueInfoService.selectedIssue.subscribe((next: IIssue | undefined) => {
+		this.selectedIssue$ = this.issueInfoService.activeIssue.subscribe((next: IIssue | undefined) => {
 			if (next) {
 				this.selectedIssue = next;
 				this.createDateFromNow = moment(new Date(next.info.created_at)).fromNow();

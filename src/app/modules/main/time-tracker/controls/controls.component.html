@@ -1,9 +1,10 @@
-<div class="controls">
-  <div class="time-track-info">{{tracker.hours | time }}:{{tracker.minutes | time}}:{{tracker.seconds | time}}</div>
-  <button mat-fab color="secondary" (click)="track()">
-    <div class="icon-round" [ngClass]="{ 'play-icon': !active, 'pause-icon': active }"></div>
-  </button>
-  <button mat-mini-fab color="primary">
-    <div class="icon-round done-icon"></div>
-  </button>
+<div class="controls" *ngIf="activeIssue">
+	<div class="time-track-info">{{activeIssue.trackedTime.hours | time }}:{{activeIssue.trackedTime.minutes |
+		time}}:{{activeIssue.trackedTime.seconds | time}}</div>
+	<button mat-fab color="secondary" (click)="track()">
+		<div class="icon-round" [ngClass]="{ 'play-icon': !trackingTime, 'pause-icon': trackingTime }"></div>
+	</button>
+	<button mat-mini-fab color="primary">
+		<div class="icon-round done-icon"></div>
+	</button>
 </div>

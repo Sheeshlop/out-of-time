@@ -3,15 +3,15 @@ import { BehaviorSubject } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class IssueInfoService {
 
-  public selectedIssue = new BehaviorSubject<IIssue | undefined>(undefined);
+	public activeIssue = new BehaviorSubject<IIssue | undefined>(undefined);
 
-  constructor() { }
+	constructor() { }
 
-  selectIssue(issue: IIssue): void {
-    this.selectedIssue.next(issue);
-  }
+	selectIssue(issue: IIssue): void {
+		this.activeIssue.next(issue);
+	}
 }

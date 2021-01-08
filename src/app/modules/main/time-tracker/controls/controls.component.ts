@@ -1,5 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { IIssue } from 'src/app/interfaces/github/issue.interface';
+import { ITrackerTime } from 'src/app/interfaces/time-tracker/time-tracker.interface';
+import { TimerService } from 'src/app/services/timer.service';
+import { IssueInfoService } from '../../issue-info/issue-info.service';
 
 @Component({
 	selector: 'app-controls',
@@ -8,33 +12,36 @@ import { timer } from 'rxjs';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ControlsComponent implements OnInit {
-	active = false;
 
-	tracker = {
-		hours: 0,
-		minutes: 0,
-		seconds: 0,
-	};
+	trackingTime = false;
+	activeIssue!: IIssue;
+	activeIssue$!: Subscription;
+	track$!: Subscription;
 
-	constructor(private changeDetector: ChangeDetectorRef) { }
+	constructor(private changeDetector: ChangeDetectorRef, private timerService: TimerService, private issueInfoService: IssueInfoService) { }
 
 	ngOnInit(): void {
-		const source = timer(1000, 1000);
-		source.subscribe(() => {
-			this.tracker.seconds++;
-			if (this.tracker.seconds === 60) {
-				this.tracker.seconds = 0;
-				this.tracker.minutes += 1;
+		this.activeIssue$ = this.issueInfoService.activeIssue.subscribe((activeIssue: IIssue | undefined) => {
+			if (activeIssue) {
+				this.activeIssue = activeIssue;
+				this.changeDetector.detectChanges();
 			}
-			if (this.tracker.minutes === 60) {
-				this.tracker.minutes = 0;
-				this.tracker.hours += 1;
-			}
-			this.changeDetector.detectChanges();
 		});
 	}
 
 	track(): void {
-		this.active = !this.active;
+		this.trackingTime ? this.pause(this.activeIssue) : this.start(this.activeIssue);
+		this.trackingTime = !this.trackingTime;
 	}
+
+	start(activeIssue: IIssue): void {
+		this.track$ = this.timerService.startTracking(activeIssue).subscribe(() => {
+			this.changeDetector.detectChanges();
+		});
+	}
+
+	pause(activeIssue: IIssue): void {
+		this.timerService.pauseTracking(activeIssue);
+	}
+
 }
