@@ -131,6 +131,7 @@
   },
   "defaultProject": "out-of-time",
   "cli": {
-    "analytics": "12587985-651e-40f8-a3e3-069267b1a7c7"
+    "analytics": "12587985-651e-40f8-a3e3-069267b1a7c7",
+    "defaultCollection": "@ngrx/schematics"
   }
 }

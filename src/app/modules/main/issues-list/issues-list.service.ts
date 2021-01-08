@@ -3,42 +3,42 @@ import { BehaviorSubject } from 'rxjs';
 import { IGithubIssue, IIssue } from 'src/app/interfaces/github/issue.interface';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class IssuesListService {
 
-  issues$ = new BehaviorSubject<IIssue[]>([]);
+	issues$ = new BehaviorSubject<IIssue[]>([]);
 
-  constructor() { }
+	constructor() { }
 
-  addSingleIssue(username: string, reponame: string, rawIssue: IGithubIssue): void {
-    const issue: IIssue = {
-      username,
-      reponame,
-      checked: false,
-      estimatedTime: '',
-      trackedTime: '',
-      info: rawIssue
-    };
-    this.issues$.next([issue]);
-  }
+	addSingleIssue(username: string, reponame: string, rawIssue: IGithubIssue): void {
+		const issue: IIssue = {
+			username,
+			reponame,
+			checked: false,
+			estimatedTime: '',
+			trackedTime: '',
+			info: rawIssue
+		};
+		this.issues$.next([issue]);
+	}
 
-  addMultipleIssues(username: string, reponame: string, issues: IGithubIssue[]): void {
-    issues.forEach(issue => {
-      this.addSingleIssue(username, reponame, issue);
-    });
-  }
+	addMultipleIssues(username: string, reponame: string, issues: IGithubIssue[]): void {
+		issues.forEach(issue => {
+			this.addSingleIssue(username, reponame, issue);
+		});
+	}
 
-  saveIssuesToStorage(issues: IIssue[]): void {
-    localStorage.setItem('issues', JSON.stringify(issues));
-  }
+	saveIssuesToStorage(issues: IIssue[]): void {
+		localStorage.setItem('issues', JSON.stringify(issues));
+	}
 
-  loadIssueseFromStorage(): IIssue[] | 'no issues in storage' {
-    const issues = localStorage.getItem('issues');
-    if (issues) {
-      return JSON.parse(issues);
-    }
-    return 'no issues in storage';
-  }
+	loadIssueseFromStorage(): IIssue[] | 'no issues in storage' {
+		const issues = localStorage.getItem('issues');
+		if (issues) {
+			return JSON.parse(issues);
+		}
+		return 'no issues in storage';
+	}
 
 }

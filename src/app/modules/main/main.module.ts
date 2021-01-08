@@ -13,22 +13,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { TimeTrackerModule } from './time-tracker/time-tracker.module';
 
 @NgModule({
-  declarations: [
-    MainComponent,
-    IssuesListComponent,
-    IssueInfoComponent,
-    IssueComponent,
-    IssueListHeaderComponent,
-    IssueLabelComponent
-  ],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    NavHeaderModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    TimeTrackerModule,
-  ],
+	declarations: [
+		MainComponent,
+		IssuesListComponent,
+		IssueInfoComponent,
+		IssueComponent,
+		IssueListHeaderComponent,
+		IssueLabelComponent
+	],
+	imports: [
+		CommonModule,
+		MainRoutingModule,
+		NavHeaderModule,
+		MatCheckboxModule,
+		MatButtonModule,
+		TimeTrackerModule,
+	],
 })
 
 export class MainModule { }

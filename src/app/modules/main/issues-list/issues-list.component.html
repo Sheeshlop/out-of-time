@@ -1,8 +1,9 @@
 <div class="header">
-    <app-issue-list-header (selectAll)="onSelectAll($event)" (deleteSelected)="deleteSelected()"></app-issue-list-header>
+	<app-issue-list-header (selectAll)="onSelectAll($event)" (deleteSelected)="deleteSelected()"></app-issue-list-header>
 </div>
 <div class="content">
-    <div class="list">
-        <app-issue #issueList *ngFor="let issue of issues" [issue]="issue" [selected]="allSelected" (click)="clickItem(issue)"></app-issue>
-    </div>
+	<div class="list">
+		<app-issue #issueList *ngFor="let issue of issues" [issue]="issue" [checked]="allChecked"
+			(click)="clickItem(issue)"></app-issue>
+	</div>
 </div>

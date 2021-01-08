@@ -2,22 +2,22 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, Output } from '@angu
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 
 @Component({
-  selector: 'app-issue',
-  templateUrl: './issue.component.html',
-  styleUrls: ['./issue.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'app-issue',
+	templateUrl: './issue.component.html',
+	styleUrls: ['./issue.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IssueComponent implements OnInit {
 
-  @Input() selected!: boolean;
-  @Input() issue!: IIssue;
+	@Input() checked!: boolean;
+	@Input() issue!: IIssue;
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
-  select(value: boolean): void {
-    this.selected = value;
-  }
+	select(value: boolean): void {
+		this.checked = value;
+	}
 }

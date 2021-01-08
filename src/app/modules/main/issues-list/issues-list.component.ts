@@ -1,62 +1,65 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component,
-  EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import {
+	ChangeDetectionStrategy, ChangeDetectorRef, Component,
+	EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, ViewChildren
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
 import { IssuesListService } from './issues-list.service';
 
 @Component({
-  selector: 'app-issues-list',
-  templateUrl: './issues-list.component.html',
-  styleUrls: ['./issues-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'app-issues-list',
+	templateUrl: './issues-list.component.html',
+	styleUrls: ['./issues-list.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IssuesListComponent implements OnInit, OnDestroy {
 
-  @Input() issues: IIssue[] = [];
-  @Output() selectIssueItem: EventEmitter<IIssue> = new EventEmitter();
+	@Input() issues: IIssue[] = [];
+	@Output() selectIssueItem: EventEmitter<IIssue> = new EventEmitter();
 
-  public allSelected!: boolean;
-  private issues$!: Subscription;
+	public allChecked!: boolean;
+	private issues$!: Subscription;
+	$issues!: any;
 
-  @ViewChildren('issueList') private issueList!: QueryList<any>;
+	@ViewChildren('issueList') private issueList!: QueryList<any>;
 
-  constructor(private issuesListService: IssuesListService, private changeDetection: ChangeDetectorRef) {
-  }
+	constructor(private issuesListService: IssuesListService, private changeDetection: ChangeDetectorRef) {
+	}
 
-  ngOnInit(): void {
-    this.issues$ = this.issuesListService.issues$.subscribe((issues: IIssue[]) => {
-      issues.forEach(issue => {
-        this.addIssue(issue);
-      });
-      this.changeDetection.markForCheck();
-    });
-  }
+	ngOnInit(): void {
+		this.issues$ = this.issuesListService.issues$.subscribe((issues: IIssue[]) => {
+			issues.forEach(issue => {
+				this.addIssue(issue);
+			});
+			this.changeDetection.markForCheck();
+		});
+	}
 
-  clickItem(item: IIssue): void {
-    this.selectIssueItem.emit(item);
-  }
+	clickItem(item: IIssue): void {
+		this.selectIssueItem.emit(item);
+	}
 
-  onSelectAll(state: boolean): void {
-    this.allSelected = state;
-  }
+	onSelectAll(state: boolean): void {
+		this.allChecked = state;
+	}
 
-  deleteSelected(): void {
-    this.issueList.forEach(item => {
-      if (item.selected) {
-        this.removeIssue(item.issue);
-      }
-    });
-  }
+	deleteSelected(): void {
+		this.issueList.forEach(item => {
+			if (item.checked) {
+				this.removeIssue(item.issue);
+			}
+		});
+	}
 
-  addIssue(issue: IIssue): void {
-    this.issues.push(issue);
-  }
+	addIssue(issue: IIssue): void {
+		this.issues.push(issue);
+	}
 
-  removeIssue(issue: IIssue): void {
-    this.issues = this.issues.filter(item => item !== issue);
-  }
+	removeIssue(issue: IIssue): void {
+		this.issues = this.issues.filter(item => item !== issue);
+	}
 
-  ngOnDestroy(): void {
-    this.issues$.unsubscribe();
-  }
+	ngOnDestroy(): void {
+		this.issues$.unsubscribe();
+	}
 }

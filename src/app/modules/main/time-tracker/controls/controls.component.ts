@@ -2,41 +2,39 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { timer } from 'rxjs';
 
 @Component({
-  selector: 'app-controls',
-  templateUrl: './controls.component.html',
-  styleUrls: ['./controls.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'app-controls',
+	templateUrl: './controls.component.html',
+	styleUrls: ['./controls.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ControlsComponent implements OnInit {
+	active = false;
 
-  active = false;
+	tracker = {
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+	};
 
-  tracker = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0 
-  }
+	constructor(private changeDetector: ChangeDetectorRef) { }
 
-  constructor(private changeDetector: ChangeDetectorRef) { }
+	ngOnInit(): void {
+		const source = timer(1000, 1000);
+		source.subscribe(() => {
+			this.tracker.seconds++;
+			if (this.tracker.seconds === 60) {
+				this.tracker.seconds = 0;
+				this.tracker.minutes += 1;
+			}
+			if (this.tracker.minutes === 60) {
+				this.tracker.minutes = 0;
+				this.tracker.hours += 1;
+			}
+			this.changeDetector.detectChanges();
+		});
+	}
 
-  ngOnInit(): void {
-    let source = timer(1000, 1000);
-    source.subscribe(x => {
-      this.tracker.seconds++;
-      if (this.tracker.seconds === 60) {
-        this.tracker.seconds = 0;
-        this.tracker.minutes += 1;
-      }
-      if (this.tracker.minutes === 60) {
-        this.tracker.minutes = 0;
-        this.tracker.hours += 1;
-      }
-      this.changeDetector.detectChanges();
-    })
-  }
-
-  track(): void {
-    this.active = !this.active;
-  }
-
+	track(): void {
+		this.active = !this.active;
+	}
 }

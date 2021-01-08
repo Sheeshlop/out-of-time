@@ -4,23 +4,23 @@ import { IssueInfoService } from './issue-info/issue-info.service';
 import { IssuesListService } from './issues-list/issues-list.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'app-main',
+	templateUrl: './main.component.html',
+	styleUrls: ['./main.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent implements OnInit {
 
-  public issueSelected = false;
+	public issueSelected = false;
 
-  constructor(private issuesListService: IssuesListService, private issueInfoService: IssueInfoService) { }
+	constructor(private issuesListService: IssuesListService, private issueInfoService: IssueInfoService) { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
-  selectIssue(issue: IIssue): void {
-    this.issueInfoService.selectIssue(issue);
-    this.issueSelected = true;
-  }
+	selectIssue(issue: IIssue): void {
+		this.issueInfoService.selectIssue(issue);
+		this.issueSelected = true;
+	}
 
 }
