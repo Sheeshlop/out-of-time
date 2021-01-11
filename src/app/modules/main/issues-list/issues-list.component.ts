@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IIssue } from 'src/app/interfaces/github/issue.interface';
+import { TimerService } from 'src/app/services/timer.service';
 import { IssuesListService } from './issues-list.service';
 
 @Component({
@@ -19,7 +20,6 @@ export class IssuesListComponent implements OnInit, OnDestroy {
 
 	public allChecked!: boolean;
 	private issues$!: Subscription;
-	$issues!: any;
 
 	@ViewChildren('issueList') private issueList!: QueryList<any>;
 

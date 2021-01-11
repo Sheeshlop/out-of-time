@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscription, timer } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, timer } from 'rxjs';
 import { IIssue } from '../interfaces/github/issue.interface';
 import { ITrackerTime } from '../interfaces/time-tracker/time-tracker.interface';
 
@@ -8,8 +8,11 @@ import { ITrackerTime } from '../interfaces/time-tracker/time-tracker.interface'
 })
 export class TimerService {
 
-	timer = timer(1000, 1000);
-	track!: Subscription;
+	public readonly activeTrackingIssue = new BehaviorSubject<IIssue | undefined>(undefined);
+
+	private readonly timer = timer(1000, 1000);
+	private track!: Subscription;
+
 
 	startTracking(activeIssue: IIssue): Observable<ITrackerTime> {
 		return new Observable((subscriber) => {
@@ -24,6 +27,7 @@ export class TimerService {
 					activeIssue.trackedTime.hours += 1;
 				}
 				subscriber.next();
+				this.activeTrackingIssue.next(activeIssue);
 			});
 		});
 	}

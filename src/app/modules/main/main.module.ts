@@ -11,6 +11,7 @@ import { IssueLabelComponent } from './issues-list/issue/issue-label/issue-label
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { TimeTrackerModule } from './time-tracker/time-tracker.module';
+import { TimeModule } from 'src/app/pipes/time/time.module';
 
 @NgModule({
 	declarations: [
@@ -28,6 +29,7 @@ import { TimeTrackerModule } from './time-tracker/time-tracker.module';
 		MatCheckboxModule,
 		MatButtonModule,
 		TimeTrackerModule,
+		TimeModule
 	],
 })
 

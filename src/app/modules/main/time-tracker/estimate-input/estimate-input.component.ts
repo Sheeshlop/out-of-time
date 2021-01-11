@@ -19,7 +19,6 @@ export class EstimateInputComponent implements OnInit {
 	}
 
 	estimate(type: 'hours' | 'minutes', value: number): void {
-		console.log(type, value);
 		if (type === 'minutes' && value >= 30) {
 			for (; this.minutes >= 30;) {
 				this.minutes -= 30;

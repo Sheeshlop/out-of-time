@@ -1,25 +1,30 @@
 <div class="issue-item">
-    <div class="icons">
-        <div class="issue-icons">
-            <div class="issue-open-icon">
-                <img src="../../../../../assets/iopen.svg" alt="issue opened icon">
-            </div>
-            <!-- <div class="issue-close-icon">
+	<div class="icons">
+		<div class="issue-icons">
+			<div class="issue-open-icon">
+				<img src="../../../../../assets/iopen.svg" alt="issue opened icon">
+			</div>
+			<!-- <div class="issue-close-icon">
                 <img src="../../../../../assets/iclosed.svg" alt="issue opened icon">
             </div>
             <div class="issue-reopen-icon">
                 <img src="../../../../../assets/ireopen.svg" alt="issue opened icon">
             </div> -->
-        </div>
-        <mat-checkbox [checked]="checked" (change)="select($event.checked)"></mat-checkbox>
-    </div>
-    <div class="title-label">
-        <div class="title">{{issue.info.title}}</div>
-        <div class="label-time-wrap">
-            <div class="labels">
-                <app-issue-label *ngFor="let label of issue.info.labels" [label]="label"></app-issue-label>
-            </div>
-            <div class="time">4 h 30 m</div>
-        </div>
-    </div>
+		</div>
+		<mat-checkbox [checked]="checked" (change)="select($event.checked)"></mat-checkbox>
+	</div>
+	<div class="title-label">
+		<div class="title">{{issue.info.title}}</div>
+		<div class="label-time-wrap">
+			<div class="labels">
+				<app-issue-label *ngFor="let label of issue.info.labels" [label]="label"></app-issue-label>
+			</div>
+			<div class="time">
+				{{
+				(((activeTrackingIssue?.trackedTime?.hours | time) || (issue.trackedTime.hours | time)) + ' : ' +
+				((activeTrackingIssue?.trackedTime?.minutes | time) || (issue.trackedTime.minutes | time)))
+				}}
+			</div>
+		</div>
+	</div>
 </div>

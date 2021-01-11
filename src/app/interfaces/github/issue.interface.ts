@@ -7,7 +7,7 @@ export interface IIssue {
 	checked: boolean;
 	estimatedTime: ITrackerTime;
 	trackedTime: ITrackerTime;
-	info: IGithubIssue;
+	readonly info: IGithubIssue;
 }
 
 export interface IGithubIssue {
